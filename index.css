@@ -1,0 +1,84 @@
+/* src/index.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C17F3E;
+  --gold-light: #D4A055;
+  --gold-dark: #8B5E3C;
+  --gold-dim: rgba(193,127,62,0.3);
+  --gold-faint: rgba(193,127,62,0.08);
+  --bg: #080503;
+  --bg-card: rgba(14,10,6,0.92);
+  --bg-surface: rgba(20,14,8,0.85);
+  --text: #F5ECD7;
+  --text-muted: #9A8A7A;
+  --text-dim: #5A4A3A;
+  --green: #3D6B5C;
+  --red: #B43C3C;
+  --border: rgba(193,127,62,0.2);
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Crimson Text', serif;
+  --font-mono: 'Courier New', monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.6);
+  --shadow-gold: 0 4px 24px rgba(193,127,62,0.18);
+}
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(193,127,62,0.04); }
+::-webkit-scrollbar-thumb { background: rgba(193,127,62,0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(193,127,62,0.45); }
+
+input, textarea, select {
+  font-family: var(--font-body);
+  background: rgba(8,5,3,0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(193,127,62,0.65);
+  box-shadow: 0 0 0 3px rgba(193,127,62,0.1);
+}
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+
+button { cursor: pointer; font-family: var(--font-display); }
+a { color: var(--gold); text-decoration: none; }
+
+.page-enter { animation: fadeUp 0.35s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pulse { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
